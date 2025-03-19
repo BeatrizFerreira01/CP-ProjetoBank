@@ -1,23 +1,25 @@
 package com.example.cpProjetoBank.repository;
 
-import com.example.cpProjetoBank.model.Conta;
-import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
+import com.example.cpProjetoBank.model.Conta;
+
 @Repository
 public class ContaRepository {
     private List<Conta> contas = new ArrayList<>();
-    private Long nextId = 1L; // Variável para gerar IDs automaticamente
 
     public Conta save(Conta conta) {
         if (conta.getId() == null) {
-            conta.setId(nextId); // Atribui o próximo ID disponível
-            nextId++; // Incrementa o ID para a próxima conta
+            conta.setId((long) (contas.size() + 1)); // Gera um ID automático para novas contas
+            contas.add(conta);
+        } else {
+            // Atualiza a conta existente na lista, se ela já existir
+            contas.replaceAll(c -> c.getId().equals(conta.getId()) ? conta : c);
         }
-        contas.add(conta);
         return conta;
     }
 
@@ -30,10 +32,12 @@ public class ContaRepository {
     }
 
     public Optional<Conta> findByCpfTitular(String cpf) {
-        return contas.stream().filter(conta -> conta.getCpfTitular().equals(cpf)).findFirst();
-    }
+        return contas.stream()
+                     .filter(conta -> conta.getCpfTitular().equals(cpf))
+                     .findFirst();
+    }    
 
-    public void delete(Long id) {
-        contas.removeIf(conta -> conta.getId().equals(id));
+    public boolean delete(Long id) {
+        return contas.removeIf(conta -> conta.getId().equals(id));
     }
 }
