@@ -1,0 +1,10 @@
+{
+    "Metodo HTTP": "POST",
+    "URL": "http://localhost:8080/contas/{id}/saque?valor={valor}",
+
+    "Params":
+        {
+            "key": "valor",
+            "value": "escolher um valor"
+        }
+}

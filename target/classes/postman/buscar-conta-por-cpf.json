@@ -1,0 +1,4 @@
+{
+    "Metodo HTTP": "GET",
+    "URL": "http://localhost:8080/contas/cpf/{numero}"
+}

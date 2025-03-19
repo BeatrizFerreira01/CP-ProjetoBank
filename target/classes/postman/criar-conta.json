@@ -1,0 +1,26 @@
+{
+  "Metodo HTTP": "POST",
+  "URL": "http://localhost:8080/contas",
+
+  "Body - JSON": [
+    {
+      "numero": "53120",
+      "agencia": "005",
+      "nomeTitular": "Beatriz Ferreira",
+      "cpfTitular": "12345678900",
+      "dataAbertura": "2024-03-17",
+      "saldo": 1500.00,
+      "ativa": true,
+      "tipo": "corrente"
+    },
+  {
+      "agencia": "002",
+      "nomeTitular": "Bárbara Diaz",
+      "cpfTitular": "98765432100",
+      "dataAbertura": "2024-03-17",
+      "saldo": 2000.00,
+      "ativa": true,
+      "tipo": "poupanca"
+    }
+  ]
+}
